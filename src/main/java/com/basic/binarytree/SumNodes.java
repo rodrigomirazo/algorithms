@@ -1,5 +1,7 @@
 package com.basic.binarytree;
 
+import java.io.IOException;
+
 public class SumNodes {
 
     static Node root;
@@ -26,14 +28,7 @@ public class SumNodes {
         printTree(node.right);
     }
 
-    public static void main(String[] args) {
-        //root = insertNode(root, 1);
-        //root = insertNode(root, 2);
-        //root = insertNode(root, 3);
-        //root = insertNode(root, 4);
-        //root = insertNode(root, 5);
-        //root = insertNode(root, 6);
-        //root = insertNode(root, 7);
+    public static void main(String[] args) throws IOException, InterruptedException {
 
         Node root = new Node(1);
         //sum = 5
@@ -46,42 +41,52 @@ public class SumNodes {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
-        ////sum = 35
-        //root.right.right.right = new Node(8);
-        //root.right.right.left = new Node(9);
-        //root.right.left.right = new Node(9);
-        //root.right.left.left = new Node(9);
-        ////sum = 100
-        //root.right.right.left.left = new Node(9);
-        //root.right.right.left.right = new Node(10);
-        //root.right.right.right.left = new Node(11);
-        //root.right.right.right.right = new Node(12);
-        //root.right.left.left.left = new Node(15);
-        //root.right.left.left.right = new Node(16);
-        //root.right.left.right.left = new Node(13);
-        //root.right.left.right.right = new Node(14);
+        //sum = 35
+        root.right.right.right = new Node(8);
+        root.right.right.left = new Node(9);
+        root.right.left.right = new Node(10);
+        root.right.left.left = new Node(11);
 
-        printTree(root);
-        System.out.println();
-        //ifrst maximun dept
+        /** Min And max Depth **/
         int maxDepth = maxDepth(root);
-        System.out.println("Max depth = " + maxDepth(root) );
-        //System.out.println("Min depth = " + minDepth(root) );
-        System.out.println("Sum depth = " +  depthSum(root, maxDepth) );
+        int minDepth = minDepth(root);
+
+        /** Total Tree Sum **/
+        int totalSum = totalSum(root);
+
+        /** Max Depth Sum **/
+        int maxDepthSum = depthSum(root, maxDepth, 0);
+
+        /** Min Depth Sum **/
+        int minDepthSum = depthSum(root, minDepth, 0);
+
+        System.out.println("\n=============Min And Max=============");
+        System.out.println("     Min depth = " + minDepth(root) );
+        System.out.println("     Max depth = " + maxDepth(root) );
+
+        System.out.println("\n=============Total SUM=============");
+        System.out.print("     Sum Nodes: ");
+        totalSum(root);
+        System.out.println( "       = " + totalSum);
+
+        System.out.println("\n\n=============SUM: Min And Max=============");
+        System.out.print("     Min Sum Nodes: ");
+        depthSum(root, maxDepth, 0);
+        System.out.println( "       = " + maxDepthSum);
+
+        System.out.print("\n     Min Sum Nodes: ");
+        depthSum(root, minDepth, 0);
+        System.out.println( "       = " + minDepthSum);
+        System.out.println("\n");
 
     }
 
-    //sum an specific level of the Tree
-    static int depthSum(Node node, int max) {
+    static int minDepth(Node node) {
 
-        if (node == null)
+        if(node == null)
             return 0;
 
-        System.out.println("node value = " + node.value + " || max = " + max);
-        if(max == 1)
-            return node.value;
-
-        return depthSum(node.left, max - 1) + depthSum(node.right, max - 1);
+        return Math.min( minDepth(node.left), minDepth(node.right)  ) + 1;
     }
 
     static int maxDepth(Node node) {
@@ -92,12 +97,27 @@ public class SumNodes {
         return Math.max( maxDepth(node.left), maxDepth(node.right)  ) + 1;
     }
 
-    static int minDepth(Node node) {
+    //sum an specific level of the Tree
+    static int totalSum(Node node) {
 
-        if(node == null)
+        if (node == null)
             return 0;
 
-        return Math.min( minDepth(node.left), minDepth(node.right)  ) + 1;
+        System.out.print(" + " + node.value);
+        return node.value + totalSum(node.left) + totalSum(node.right);
+    }
+
+    //sum an specific level of the Tree
+    static int depthSum(Node node, int max, int countLevel) {
+
+        if (node == null)
+            return 0;
+
+        if(max == countLevel + 1) {
+            System.out.print( " + " + node.value);
+            return node.value;
+        }
+        return + depthSum(node.left, max, countLevel + 1) + depthSum(node.right, max, countLevel + 1);
     }
 
 
