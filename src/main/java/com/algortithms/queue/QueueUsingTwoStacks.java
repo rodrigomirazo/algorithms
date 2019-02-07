@@ -1,7 +1,5 @@
-package com.basic.algortithms.sectionC;
+package com.algortithms.queue;
 
-import javax.swing.text.html.HTMLDocument;
-import java.util.Iterator;
 import java.util.Stack;
 
 public class QueueUsingTwoStacks {

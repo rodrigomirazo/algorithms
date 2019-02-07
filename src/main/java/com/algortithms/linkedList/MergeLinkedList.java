@@ -1,4 +1,4 @@
-package com.basic.algortithms.sectionB;
+package com.algortithms.linkedList;
 
 import java.util.List;
 

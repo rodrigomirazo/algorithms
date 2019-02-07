@@ -1,4 +1,4 @@
-package com.basic.algortithms;
+package com.algortithms;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

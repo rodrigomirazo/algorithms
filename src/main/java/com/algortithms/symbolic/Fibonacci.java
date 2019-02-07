@@ -1,4 +1,4 @@
-package com.basic.algortithms.sectionH;
+package com.algortithms.symbolic;
 
 public class Fibonacci {
 

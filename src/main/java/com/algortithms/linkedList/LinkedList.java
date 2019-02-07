@@ -1,4 +1,4 @@
-package com.basic.algortithms.linkedList;
+package com.algortithms.linkedList;
 
 public class LinkedList {
 

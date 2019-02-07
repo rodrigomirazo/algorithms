@@ -1,4 +1,4 @@
-package com.basic.algortithms.sectionH;
+package com.algortithms.symbolic;
 
 public class Factorial {
     // method to find factorial of given number

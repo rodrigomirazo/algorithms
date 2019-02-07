@@ -1,4 +1,4 @@
-package com.basic.algortithms.sectionE;
+package com.algortithms.sort;
 
 public class InsertionSort {
 

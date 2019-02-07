@@ -1,4 +1,4 @@
-package com.basic.algortithms.sectionF;
+package com.basic.binarytree;
 
 public class TreeSwap {
 
