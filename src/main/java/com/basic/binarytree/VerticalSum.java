@@ -60,35 +60,59 @@ public class VerticalSum {
     }
 
     // Constructs linked list
-    static void verticalSumDLLUtil(Node node, LLNode llnode)
+    static void verticalSumDLLUtil(Node node, LLNode linkedList)
     {
         // Add current node's data to its vertical line
-        llnode.data = llnode.data + node.value;
-        System.out.print("node.data = " + node.value + " - ");
+        linkedList.data = linkedList.data + node.value;
+        /**
+              _
+          1   |
+         / \  | Tree
+              -
+         --*--   LinkedList
+           1
+         */
+
 
         // Recursively process left subtree
         if (node.left != null)
         {
-            if (llnode.prev == null)
-            {
-                llnode.prev = new LLNode(0);
-                llnode.prev.next = llnode;
+            /**
+                       _
+                1      |
+               / \     | Tree
+             2*        |
+                       -
+             *--*--   LinkedList
+             2  1
+             */
+            if (linkedList.prev == null) {
+                linkedList.prev = new LLNode(0);
+                linkedList.prev.next = linkedList;//?
             }
-            System.out.print("Left:  node = " + node.left.value + " ||R ");
-            verticalSumDLLUtil(node.left, llnode.prev);
+            verticalSumDLLUtil(node.left, linkedList.prev);
         }
 
-        // Process right subtree
-        if (node.right != null)
-        {
-            if (llnode.next == null)
-            {
-                llnode.next = new LLNode(0);
-                llnode.next.prev = llnode;
+        if (node.right != null) {
+
+            /**
+                      _
+               1      |
+              / \     | Tree
+             2   3    |
+                      -
+             *--*--*  LinkedList
+             2  1  3
+             */
+
+            if (linkedList.next == null) {
+                linkedList.next = new LLNode(0);
+                linkedList.next.prev = linkedList;
             }
-            System.out.print("right: node = " + node.right.value + " ||R ");
-            verticalSumDLLUtil(node.right, llnode.next);
+            verticalSumDLLUtil(node.right, linkedList.next);
         }
+
+
     }
 
     static void printLinkedList(LLNode llNode) {

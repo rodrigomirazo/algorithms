@@ -2,10 +2,35 @@ package com.algortithms.LinkedList.simple;
 
 public class LinkedListService {
 
-    public static LinkedListInsert insertNode(LinkedListInsert linkedList, int data) {
+    Node head = null;
+
+    /**
+     * Simple Node
+     */
+    static class Node {
+
+        int data;
+        Node next;
+
+        public Node(int data) {
+            //Initialize data
+            this.data = data;
+            //Set to null next node;
+            this.next = null;
+        }
+    }
+
+    /**
+     * Insert
+     *
+     * @param linkedList
+     * @param data
+     * @return
+     */
+    public static LinkedListService insert(LinkedListService linkedList, int data) {
 
         //Declare Head List
-        LinkedListInsert.Node newHead = new LinkedListInsert.Node(data);
+        Node newHead = new Node(data);
 
         if( linkedList.head == null ) {
             linkedList.head = newHead;
@@ -13,7 +38,7 @@ public class LinkedListService {
         } else {
 
             //Iterate List unitl the last Node
-            LinkedListInsert.Node iterate = linkedList.head;
+            Node iterate = linkedList.head;
             while (iterate.next != null) {
                 iterate = iterate.next;
             }
@@ -24,62 +49,59 @@ public class LinkedListService {
         return linkedList;
     }
 
-    public SimpleNode insert(SimpleNode simpleNode, int data) {
-
-        if(simpleNode == null) {
-            System.out.println("null");
-            simpleNode = new SimpleNode(data);
-        } else {
-            System.out.println("Not null");
-            while (simpleNode.next != null) {
-
-                simpleNode = simpleNode.next;
-                System.out.println(simpleNode.toString());
-            }
-            simpleNode.next = new SimpleNode(data);
-        }
-
-        return simpleNode;
-    }
-
-    public void printLinkedList(SimpleNode simpleNode) {
+    /**
+     * Print
+     *
+     * @param linkedList
+     */
+    public static void printLinkedList(LinkedListService linkedList) {
         System.out.print("\nLinkedLsit = [");
 
-        SimpleNode simpleNode1 = simpleNode;
+        Node head = linkedList.head;
 
-        while (simpleNode1 != null) {
-            System.out.print(simpleNode1.data + ", ");
-            simpleNode1 = simpleNode1.next;
+        while (head != null) {
+            System.out.print(head.data + ", ");
+            head = head.next;
         }
         System.out.print("]\n");
     }
 
-    public SimpleNode fillLinkedList_1() {
-        SimpleNode simpleNode = new SimpleNode(0);
+    /**
+     * FIll Linked List
+     *
+     * @return
+     */
+    public LinkedListService fillLinkedList() {
+        LinkedListService linkedList = new LinkedListService();
 
-        simpleNode = insert(simpleNode, 10);
-        simpleNode = insert(simpleNode, 20);
-        simpleNode = insert(simpleNode, 30);
-        simpleNode = insert(simpleNode, 40);
-        simpleNode = insert(simpleNode, 60);
+        linkedList = insert(linkedList, 10);
+        linkedList = insert(linkedList, 20);
+        linkedList = insert(linkedList, 30);
+        linkedList = insert(linkedList, 40);
+        linkedList = insert(linkedList, 60);
 
-        printLinkedList(simpleNode);
+        printLinkedList(linkedList);
 
-        return simpleNode;
+        return linkedList;
     }
 
-    public SimpleNode fillLinkedList_2() {
-        SimpleNode simpleNode = new SimpleNode(5);
+    /**
+     * FIll Linked List
+     *
+     * @return
+     */
+    public LinkedListService fillLinkedList_2() {
+        LinkedListService linkedList = new LinkedListService();
 
-        simpleNode = insert(simpleNode, 15);
-        simpleNode = insert(simpleNode, 25);
-        simpleNode = insert(simpleNode, 35);
-        simpleNode = insert(simpleNode, 45);
-        simpleNode = insert(simpleNode, 65);
+        linkedList = insert(linkedList, 15);
+        linkedList = insert(linkedList, 25);
+        linkedList = insert(linkedList, 35);
+        linkedList = insert(linkedList, 45);
+        linkedList = insert(linkedList, 65);
 
-        printLinkedList(simpleNode);
+        printLinkedList(linkedList);
 
-        return simpleNode;
+        return linkedList;
     }
 
 }
