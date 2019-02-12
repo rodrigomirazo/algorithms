@@ -4,11 +4,7 @@ public class InsertNode {
 
     private Node root;
 
-    public InsertNode(Node root) {
-        this.root = root;
-    }
-
-    private Node addRecursive(Node current, int insertValue) {
+    static private Node addRecursive(Node current, int insertValue) {
         // If the  current node IS EMPTY,
         // a new NODE will be CREATED
         if (current == null) {
@@ -24,17 +20,17 @@ public class InsertNode {
         // it will be inserted at the RIGHT
         } else if (insertValue > current.value) {
             current.right = addRecursive(current.right, insertValue);
-
-        // value already exists
-        } else {
-            return current;
         }
 
         return current;
     }
 
-    public void add(int value) {
-        root = addRecursive(root, value);
+    public static void main(String[] args) {
+
+        Node root = new Node(1);
+        root = addRecursive(root, 2);
+        root = addRecursive(root, 5);
+        root = addRecursive(root, 3);
     }
 
 }

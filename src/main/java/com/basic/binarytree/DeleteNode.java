@@ -2,54 +2,63 @@ package com.basic.binarytree;
 
 public class DeleteNode {
 
-    private Node node;
+    public static void main(String[] args) {
+        Node root = new Node(50);
+        root.left = new Node(30);
+        root.left.left = new Node(20);
+        root.left.right = new Node(40);
 
-    public DeleteNode(Node node) {
-        this.node = node;
+        root.right = new Node(70);
+        root.right.left = new Node(60);
+        root.right.left = new Node(80);
+        /**
+         *         50
+         *      /     \
+         *     30      70
+         *    /  \    /  \
+         *  20   40  60   80
+         */
     }
 
-    private Node deleteRecursive(Node current, int value) {
+    private Node deleteRecursive(Node node, int value) {
 
-        if (current == null) {
-            return null;
+        if(node == null)
+            return node;
+        //Recur Next Values
+        else if( value < node.value )
+            node.left = deleteRecursive(node.left, value);
+        else if( value > node.value)
+            node.right = deleteRecursive(node.right, value);
+        //if(node.value == value)
+        else {
+
+            //Case 1: node with only one child or no child
+            if (node.left == null)
+                return node.right;
+
+            else if (node.right == null)
+                return node.left;
+
+            //Case 2: node with two children: Get the inorder successor
+            node.value = minValue(node.right);
+
+            // Delete the inorder successor
+            node.right = deleteRecursive(node.right, node.value);
         }
 
-        if (value == current.value) {
-            /** CASES **/
-
-            //Case 1: both nodes are empty
-            if (current.left == null && current.right == null) {
-                return null;
-            }
-
-            //Case 2: Node has one child
-            if (current.right == null) {
-                return current.left;
-            }
-            if (current.left == null) {
-                return current.right;
-            }
-
-            //Case 3: Node has multiple childs
-
-        }
-        if (value < current.value) {
-            current.left = deleteRecursive(current.left, value);
-            return current;
-        }
-        current.right = deleteRecursive(current.right, value);
-        return current;
+        return node;
     }
 
-    /*
-    private int findSmallestValue(Node root) {
-        if (root.left == null) {
-            root.value;
-        } else {
-            findSmallestValue(root.left);
-        }
+    // smallest in the subtree
+    int minValue(Node root) {
+        int minv = root.value;
+        //As is a binary tree, it should be the left leaf
+        while (root.left != null) {
 
-        return root.left == null ? root.value : findSmallestValue(root.left);
+            minv = root.left.value;
+            root = root.left;
+        }
+        return minv;
     }
-    */
+
 }
