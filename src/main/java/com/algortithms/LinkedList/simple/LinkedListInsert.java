@@ -1,4 +1,4 @@
-package com.algortithms.linkedList;
+package com.algortithms.LinkedList.simple;
 
 import java.io.IOException;
 

@@ -1,6 +1,4 @@
-package com.algortithms.linkedList;
-
-import java.util.List;
+package com.algortithms.LinkedList.simple;
 
 public class MergeLinkedList {
 
