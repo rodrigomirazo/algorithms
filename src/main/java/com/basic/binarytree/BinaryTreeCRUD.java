@@ -10,14 +10,17 @@ class BinaryTreeCRUD {
     public static void main(String[] args) {
 
         /** CRUD **/
-        root = new Node(1);
         root = insert(root, 5);
         root = insert(root, 1);
         root = insert(root, 3);
 
         System.out.println("root 1");
         inorder(root);
+        //root =
+        delete(root, 5);
 
+        System.out.println("");
+        inorder(root);
     }
 
     static void inorder(Node node) {
