@@ -1,12 +1,12 @@
 package com.algortithms.LinkedList.simple;
 
-public class LinkedList {
+public class LinkedListDelete {
 
     public static Node head = null;
 
     public static void main(String[] args) {
 
-        LinkedList linkedList = new LinkedList();
+        LinkedListDelete linkedList = new LinkedListDelete();
 
         linkedList = insert(linkedList, 1);
         linkedList = insert(linkedList, 2);
@@ -43,7 +43,7 @@ public class LinkedList {
         prev.next = current.next;
     }
 
-    static LinkedList deleteNode(LinkedList linkedList, int data) {
+    static LinkedListDelete deleteNode(LinkedListDelete linkedList, int data) {
 
         if( linkedList.head == null) {
             return linkedList;
@@ -69,7 +69,7 @@ public class LinkedList {
     }
 
 
-    static LinkedList insert(LinkedList linkedList, int data) {
+    static LinkedListDelete insert(LinkedListDelete linkedList, int data) {
         Node newNode = new Node(data);
 
         if( linkedList.head == null) {
@@ -86,7 +86,7 @@ public class LinkedList {
         return linkedList;
     }
 
-    static void printLL(LinkedList linkedList) {
+    static void printLL(LinkedListDelete linkedList) {
 
         Node node = linkedList.head;
         System.out.println("print: ");

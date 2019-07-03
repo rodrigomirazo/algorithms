@@ -19,10 +19,23 @@ public class DeleteNode {
          *  20   40  60   80
          */
 
-
+        print(root);
+        System.out.println();
+        deleteRecursive(root, 50);
+        print(root);
     }
 
-    private Node deleteRecursive(Node node, int value) {
+    static void print(Node root) {
+
+        if(root == null)
+            return;
+
+        print(root.left);
+        System.out.print(root.value + " ");
+        print(root.right);
+    }
+
+    static private Node deleteRecursive(Node node, int value) {
 
         if(node == null)
             return node;
@@ -52,7 +65,7 @@ public class DeleteNode {
     }
 
     // smallest in the subtree
-    int minValue(Node root) {
+    static int minValue(Node root) {
         int minv = root.value;
         //As is a binary tree, it should be the left leaf
         while (root.left != null) {

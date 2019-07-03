@@ -18,10 +18,10 @@ public class VerticalSum {
         Node root = new Node(1);
         root.left = new Node(2);
         root.right = new Node(3);
-        //root.left.left = new Node(4);
-        //root.left.right = new Node(5);
-        //root.right.left = new Node(6);
-        //root.right.right = new Node(7);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.left = new Node(6);
+        root.right.right = new Node(7);
 
         System.out.println("Vertical Sums are");
         verticalSumDLL(root);
@@ -84,9 +84,10 @@ public class VerticalSum {
              2*        |
                        -
              *--*--   LinkedList
-             2  1
+             0  1
              */
             if (linkedList.prev == null) {
+                System.out.println("linkedList.prev => TNode.data = " + linkedList.data);
                 linkedList.prev = new LLNode(0);
                 linkedList.prev.next = linkedList;//?
             }
@@ -106,6 +107,7 @@ public class VerticalSum {
              */
 
             if (linkedList.next == null) {
+                System.out.println("linkedList.next => TNode.data = " + linkedList.data);
                 linkedList.next = new LLNode(0);
                 linkedList.next.prev = linkedList;
             }

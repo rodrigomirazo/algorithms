@@ -63,15 +63,11 @@ public class InsertionDLL {
     }
 
     static void append(int new_data) {
-        /* 1. allocate node
-         * 2. put in the data */
+
         Node newNode = new Node(new_data);
-
-        Node last = head; /* used in step 5*/
-
-        /* 3. This new node is going to be the last node, so
-         * make next of it as NULL*/
         newNode.next = null;
+
+        Node last = head;
 
         /* 4. If the Linked List is empty, then make the new
          * node as head */

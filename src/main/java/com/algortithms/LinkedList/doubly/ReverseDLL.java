@@ -12,20 +12,57 @@ public class ReverseDLL {
         append(4);
         append(5);
 
-        print();
+        while (head.prev != null) {
+            head = head.prev;
+        }
+
+        reverseList();
+
+        while (head != null) {
+            System.out.print(head.data + "-");
+            head = head.prev;
+        }
 
 
+        System.out.println();
+        while (head != null) {
+            System.out.print(head.data + " ");
+            head = head.next;
+        }
+
+    }
+
+    static void reverseList() {
+        Node node = head;
+        Node temp = null;
+
+        while (node != null) {
+
+            temp = node.prev;
+            node.prev = node.next;
+            node.next = temp;
+            //node.prev is now node.next
+            node = node.prev;
+        }
+
+        System.out.println();
     }
 
     static void print() {
         System.out.println("\nprint");
+
         Node first = head;
-        System.out.println();
-        while (first != null) {
+        while (first.next != null) {
             System.out.print(first.data + " ");
             first = first.next;
         }
-        System.out.println();
+
+        System.out.println("\n\nPrint Reverse");
+        while(first != null) {
+            System.out.print(first.data + " ");
+            first = first.prev;
+        }
+
     }
 
     static void append(int new_data) {
@@ -68,13 +105,6 @@ public class ReverseDLL {
         // next and prev is by default initialized as null
         Node(int d) { data = d; }
 
-        @Override
-        public String toString() {
-            return "Node{" +
-                    "data=" + data +
-                    ", prev=" + prev +
-                    ", next=" + next +
-                    '}';
-        }
+
     }
 }

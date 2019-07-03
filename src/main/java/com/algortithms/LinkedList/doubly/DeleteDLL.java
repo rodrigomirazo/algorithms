@@ -51,7 +51,6 @@ public class DeleteDLL {
 
                 node.next.prev = node.prev;
                 node.prev.next = node.next;
-
             }
 
             node = node.next;

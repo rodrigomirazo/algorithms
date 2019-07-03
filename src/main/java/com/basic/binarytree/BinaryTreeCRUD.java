@@ -99,13 +99,10 @@ class BinaryTreeCRUD {
 
     static int minBranchValue(Node node) {
 
-        int minVal = node.value;
-        while (node.left != null) {
+        while (node.left != null)
             node = node.left;
-            minVal = node.value;
-        }
 
-        return minVal;
+        return node.value;
     }
 
 }
