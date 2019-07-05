@@ -6,23 +6,23 @@ public class DeleteDLL {
 
     public static void main(String[] args) {
 
-        append(1);
-        append(2);
-        append(3);
-        append(4);
-        append(5);
-        append(6);
-        append(7);
+        head = append(head, 1);
+        head = append(head, 2);
+        head = append(head, 3);
+        head = append(head, 4);
+        head = append(head, 5);
+        head = append(head, 6);
+        head = append(head, 7);
 
         System.out.println("print Recursive: node.data = ");
-        printRecursive(head);
+        print(head);
         System.out.println();
 
-        deleteWhile(3);
-        head = deleteRecursive(head, 4);
+        deleteWhile(head,3);
+        //head = deleteRecursive(head, 4);
 
         System.out.println("\n\nprint Recursive");
-        printRecursive(head);
+        print(head);
     }
 
     static Node deleteRecursive(Node node, int data) {
@@ -40,20 +40,20 @@ public class DeleteDLL {
         return node;
     }
 
-    static void deleteWhile(int data) {
+    static void deleteWhile(Node head, int data) {
 
-        Node node = head;
+        Node temp = head;
 
-        while (node != null) {
+        while (temp != null) {
 
-            if(node.data == data) {
+            if(temp.data == data) {
                 System.out.print("\n" + "data=" + data + "\n");
 
-                node.next.prev = node.prev;
-                node.prev.next = node.next;
+                temp.next.prev = temp.prev;
+                temp.prev.next = temp.next;
             }
 
-            node = node.next;
+            temp = temp.next;
         }
 
     }
@@ -68,22 +68,22 @@ public class DeleteDLL {
         printRecursive(head.next);
     }
 
-    static void print() {
-        Node first = head;
+    static void print(Node head) {
+        Node temp = head;
         System.out.println();
-        while (first != null) {
-            System.out.print(first.data + " ");
-            first = first.next;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
         }
 
     }
 
-    static void append(int new_data) {
+    static Node append(Node head, int new_data) {
         /* 1. allocate node
          * 2. put in the data */
         Node newNode = new Node(new_data);
 
-        Node last = head; /* used in step 5*/
+        Node temp = head; /* used in step 5*/
 
         /* 3. This new node is going to be the last node, so
          * make next of it as NULL*/
@@ -94,18 +94,20 @@ public class DeleteDLL {
         if (head == null) {
             newNode.prev = null;
             head = newNode;
-            return;
+            return head;
         }
 
         /* 5. Else traverse till the last node */
-        while (last.next != null)
-            last = last.next;
+        while (temp.next != null)
+            temp = temp.next;
 
         /* 6. Change the next of last node */
-        last.next = newNode;
+        temp.next = newNode;
 
         /* 7. Make last node as previous of new node */
-        newNode.prev = last;
+        newNode.prev = temp;
+
+        return head;
     }
 
     /* Doubly Linked list Node*/

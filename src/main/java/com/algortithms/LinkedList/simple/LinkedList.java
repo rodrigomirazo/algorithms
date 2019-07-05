@@ -8,39 +8,39 @@ public class LinkedList {
 
         LinkedList linkedList = new LinkedList();
 
-        linkedList = insert(linkedList, 1);
-        linkedList = insert(linkedList, 2);
-        linkedList = insert(linkedList, 3);
-        linkedList = insert(linkedList, 4);
-        linkedList = insert(linkedList, 5);
+        head = insert(head, 1);
+        head = insert(head, 2);
+        head = insert(head, 3);
+        head = insert(head, 4);
+        head = insert(head, 5);
 
-        printLL( linkedList );
+        printLL( linkedList.head );
 
         //linkedList = deleteNode(linkedList, 2);
-        deleteNode(4);
-        printLL(linkedList);
+        deleteNode(linkedList.head, 4);
+        printLL(linkedList.head );
 
     }
 
-    static void deleteNode(int key) {
+    static void deleteNode(Node head, int key) {
 
         // Store head node
-        Node current = head;
+        Node temp = head;
         Node prev = null;
 
         // Search for the key to be deleted, keep track of the
         // previous node as we need to change temp.next
-        while (current != null && current.data != key)
+        while (temp != null && temp.data != key)
         {
-            prev = current;
-            current = current.next;
+            prev = temp;
+            temp = temp.next;
         }
 
-        System.out.println("prev.next = " + prev.next.data);
-        System.out.println("current.next = " + current.next.data);
+        //System.out.println("prev.next = " + prev.next.data);
+        //System.out.println("current.next = " + current.next.data);
 
         // Unlink the node from linked list
-        prev.next = current.next;
+        prev.next = temp.next;
     }
 
     static LinkedList deleteNode(LinkedList linkedList, int data) {
@@ -69,30 +69,30 @@ public class LinkedList {
     }
 
 
-    static LinkedList insert(LinkedList linkedList, int data) {
+    static Node insert(Node head, int data) {
         Node newNode = new Node(data);
 
-        if( linkedList.head == null) {
-            linkedList.head = newNode;
+        if( head == null) {
+            head = newNode;
         } else {
 
-            Node current = linkedList.head;
-            while (current.next != null) {
-                current = current.next;
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
             }
-            current.next = newNode;
+            temp.next = newNode;
         }
 
-        return linkedList;
+        return head;
     }
 
-    static void printLL(LinkedList linkedList) {
+    static void printLL(Node head) {
 
-        Node node = linkedList.head;
+        Node temp = head;
         System.out.println("print: ");
-        while (node != null) {
-            System.out.print(node.data + " ");
-            node = node.next;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
         }
         System.out.println();
     }

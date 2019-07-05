@@ -9,7 +9,7 @@ class BinaryTreeCRUD {
 
     public static void main(String[] args) {
 
-        /** CRUD **/
+        /** CircularLinkedCRUD **/
         root = insert(root, 5);
         root = insert(root, 1);
         root = insert(root, 3);

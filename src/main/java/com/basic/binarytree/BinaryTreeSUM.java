@@ -7,7 +7,7 @@ class BinaryTreeSUM {
 
     public static void main(String[] args) {
 
-        /** CRUD **/
+        /** CircularLinkedCRUD **/
         Node root = new Node(1);
 
         //sum = 5
