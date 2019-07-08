@@ -42,43 +42,47 @@ public class MergeSort {
 
     private void mergeParts(int lowerIndex, int middle, int higherIndex) {
 
-        for (int i = lowerIndex; i <= higherIndex; i++) {
-            tempMergArr[i] = inputArray[i];
-        }
-        //From lower to the middle
-        int leftMiddle = lowerIndex;
+        int[] tempMergArr = inputArray.clone();
 
-        //from the middle to the higher index
-        int middleRight = middle + 1;
+        //From left to the middle
+        int leftToMiddle = lowerIndex;
 
-        //From begining to the end
-        int leftRight = lowerIndex;
+        //from the middle to the right index
+        int midToRight = middle + 1;
 
-        //merge from middle to the last
-        while (leftMiddle <= middle && middleRight <= higherIndex) {
+        //From left to the end
+        int endToEnd = lowerIndex;
 
-            if (tempMergArr[leftMiddle] <= tempMergArr[middleRight]) {
-                inputArray[leftRight] = tempMergArr[leftMiddle];
-                leftMiddle++;
+        //              |-->--|-----|  &&  |-----|-->---|
+        while ( leftToMiddle <= middle && midToRight <= higherIndex) {
+
+            //         |>------|-------|  <= |------|>------|
+            if (tempMergArr[leftToMiddle] <= tempMergArr[midToRight]) {
+                inputArray[endToEnd] = tempMergArr[leftToMiddle];
+                leftToMiddle++;
             } else {
-                inputArray[leftRight] = tempMergArr[middleRight];
-                middleRight++;
+                inputArray[endToEnd] = tempMergArr[midToRight];
+                midToRight++;
             }
-            leftRight++;
+            endToEnd++;
         }
 
-        //merge from lower to middle
-        while (leftMiddle <= middle) {
-            System.out.print(tempMergArr[leftMiddle] + " ");
-            inputArray[leftRight] = tempMergArr[leftMiddle];
-            leftRight++;
-            leftMiddle++;
+        //Copy remaining elements of tempArray
+        //           |>-----|-------|
+        while (leftToMiddle <= middle) {
+            inputArray[endToEnd] = tempMergArr[leftToMiddle];
+            endToEnd++;
+            leftToMiddle++;
         }
+        printArr(tempMergArr);
 
+    }
+
+    void printArr(int[] arr) {
         System.out.println("print Part: ");
-        for(int l:tempMergArr){
+        for(int l:arr){
             System.out.print(" " + l);
         }
-
+        System.out.println("\n");
     }
 }

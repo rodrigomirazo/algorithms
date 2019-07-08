@@ -50,7 +50,8 @@ public class QuickSortLastElement {
                 arr[i] = temp;
             }
         }
-        // swap arr[i+1] and arr[high] (or pivot)
+
+        // swap lowest with Hightest Elements
         int temp = arr[lowestElement+1];
         arr[lowestElement+1] = arr[high];
         arr[high] = temp;

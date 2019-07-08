@@ -2,8 +2,9 @@ package com.algortithms.sort;
 
 public class InsertionSort {
 
-    static void insertionSortWhile(int n, int[] arr) {
-        for (int i = 1; i < n; ++i) {
+    static void insertionSortWhile(int elements, int[] arr) {
+
+        for (int i = 1; i < elements; ++i) {
             int key = arr[i];
             int decrease = i - 1;
 
