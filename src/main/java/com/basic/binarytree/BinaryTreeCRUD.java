@@ -5,7 +5,6 @@ class BinaryTreeCRUD {
 
     // Root of Binary Tree
     static Node root;
-    static Node root2;
 
     public static void main(String[] args) {
 
@@ -65,6 +64,7 @@ class BinaryTreeCRUD {
 
         if(node == null)
             return node;
+
         else if(value < node.value)
             node.left = delete(node.left, value);
 
