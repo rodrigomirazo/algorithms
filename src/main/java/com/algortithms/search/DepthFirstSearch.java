@@ -30,12 +30,11 @@ class DepthFirstSearch {
         System.out.println("Following is Depth First Traversal "+
                 "(starting from vertex 2)");
 
-        g.DFS(2);
+        g.DFS();
     }
 
     //Function to add an edge into the graph
-    void addEdge(int v, int w)
-    {
+    void addEdge(int v, int w) {
         adj[v].add(w);  // Add w to v's list.
     }
 
@@ -47,24 +46,28 @@ class DepthFirstSearch {
         System.out.print(v+" ");
 
         // Recur for all the vertices adjacent to this vertex
-        Iterator<Integer> i = adj[v].listIterator();
-        while (i.hasNext())
+        Iterator<Integer> vetextList = adj[v].listIterator();
+        while (vetextList.hasNext())
         {
-            int n = i.next();
-            if (!visited[n])
-                DFSUtil(n, visited);
+            int nextVertex = vetextList.next();
+
+            if (!visited[ nextVertex ])
+                DFSUtil(nextVertex, visited);
         }
     }
 
     // The function to do DFS traversal. It uses recursive DFSUtil()
-    void DFS(int v)
+    void DFS()
     {
         // Mark all the vertices as not visited(set as
         // false by default in java)
         boolean visited[] = new boolean[V];
 
         // Call the recursive helper function to print DFS traversal
-        DFSUtil(v, visited);
+        // starting from all vertices one by one
+        for (int i=0; i<V; ++i)
+            if (visited[i] == false)
+                DFSUtil(i, visited);
     }
 
 }
