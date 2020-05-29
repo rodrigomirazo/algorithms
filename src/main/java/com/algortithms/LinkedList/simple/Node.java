@@ -1,12 +1,12 @@
 package com.algortithms.LinkedList.simple;
 
-public class SimpleNode {
+public class Node {
 
     int data;
-    SimpleNode next;
+    Node next;
 
     // Constructor
-    SimpleNode(int d) {
+    Node(int d) {
         data = d;
         next = null;
     }

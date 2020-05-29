@@ -27,8 +27,8 @@ class BinaryTreeCRUD {
         if(node == null)
             return;
 
-        inorder(node.left);
         System.out.print(node.value + " ");
+        inorder(node.left);
         inorder(node.right);
     }
 

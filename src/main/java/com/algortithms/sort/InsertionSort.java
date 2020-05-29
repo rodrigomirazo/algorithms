@@ -1,33 +1,41 @@
 package com.algortithms.sort;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 public class InsertionSort {
 
-    static void insertionSortWhile(int[] arr) {
-
-        for (int i = 1; i < arr.length; ++i) {
-            int key = arr[i];
-            int decrease = i - 1;
-
-            while (decrease >= 0 && arr[decrease] > key) {
-                arr[decrease + 1] = arr[decrease];
-                decrease = decrease - 1;
-            }
-            arr[decrease + 1] = key;
-        }
-
-        print(arr);
-    }
-
-    static void print(int[] arr) {
-        System.out.println();
-        for(int i=0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-    }
-
     public static void main(String[] args) {
-        int[] arr = {1, 4, 3, 5, 6, 2};
-        insertionSortWhile(arr);
+        int[] states = {1, 3, 5, 7};
+        List<List<Integer>> files = new ArrayList<>();
+        List<Integer> arr = new ArrayList<>();
+        arr.add(0);
+        arr.add(1);
+
+        files.add( arr );
+        files.add(arr);
+        files.add(arr);
+        files.add(arr);
+
+
     }
 
+
+
+    public static int getMax(List<List<Integer>> Lists) {
+
+        int max = 0;
+        int i = 0;
+        while (i < Lists.size()) {
+            i++;
+
+            if( Lists.get(i-1)
+                    .get(1) > max )
+                max = Lists.get(i).get(1);
+        }
+
+        return max;
+    }
 }

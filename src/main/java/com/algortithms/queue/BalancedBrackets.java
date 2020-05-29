@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 public class BalancedBrackets {
-
+/*
     // Complete the isBalanced function below.
     static String isBalanced(String s) {
 
@@ -39,6 +39,7 @@ public class BalancedBrackets {
                 if( stackCorch.empty() )
                     return "NO";
 
+                char c = s.charAt(i-1);
                 if(i > 0 && s.charAt(i-1) != '('
                         && s.charAt(i-1) != ')'
                         && s.charAt(i-1) != '}'
@@ -66,7 +67,7 @@ public class BalancedBrackets {
 
         }
 
-        if( stackParent.empty() || stackCorch.empty() || stackLlave.empty() ) {
+        if( stackParent.empty() && stackCorch.empty() && stackLlave.empty() ) {
             System.out.println("\nReturn Yes \n");
             return "YES";
         } else {
@@ -74,26 +75,48 @@ public class BalancedBrackets {
             return "NO";
         }
     }
-
+*/
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        System.out.println(isBalanced("{[(])}"));
+    }
 
-        int t = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-        for (int tItr = 0; tItr < t; tItr++) {
-            String s = scanner.nextLine();
+    static Stack stack = new Stack();
 
-            String result = isBalanced(s);
+    static boolean mathcingPairs(char popedChar, char currentChar) {
+        if(popedChar == '(' && currentChar == ')')
+            return true;
+        if(popedChar == '[' && currentChar == ']')
+            return true;
+        if(popedChar == '{' && currentChar == '}')
+            return true;
+        else
+            return false;
+    }
 
-            bufferedWriter.write(result);
-            bufferedWriter.newLine();
+    static boolean isBalanced(String s) {
+        for (int i = 0; i < s.length(); i++) {
+
+            if(s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{') {
+                stack.push(s.charAt(i));
+            }
+
+            if(s.charAt(i) == ')' || s.charAt(i) == ']' || s.charAt(i) == '}') {
+
+                if(stack.empty())
+                    return false;
+                else if(! mathcingPairs((char)stack.pop(), s.charAt(i) ) )
+                return true;
+            }
+
         }
 
-        bufferedWriter.close();
+        if(stack.empty())
+            return true;
+        else
+            return false;
 
-        scanner.close();
     }
 }

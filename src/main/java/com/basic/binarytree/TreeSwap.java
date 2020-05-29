@@ -30,7 +30,7 @@ public class TreeSwap {
         printInorder(root);
 
         //swap
-        swap(root, 1, 2);
+        swap2(root);
 
         System.out.println("\nAfter swap:");
         //Print in order, after swap
@@ -51,6 +51,18 @@ public class TreeSwap {
         }
     }
 
+    static void swap2(Node node) {
+        if(node == null)
+            return;
+
+        Node temp = node.left;
+        node.left = node.right;
+        node.right = temp;
+
+        swap2(node.left);
+        swap2(node.right);
+    }
+
 
     /**
      * Print In-Order Tree nodes
@@ -65,25 +77,6 @@ public class TreeSwap {
 
 
         }
-    }
-
-    /**
-     * Search node by data value
-     * @param root
-     * @param data
-     * @return
-     */
-    static Node searchNode(Node root, int data) {
-
-        //If root is empty OR is not found, return current node
-        if(root == null || root.data == data)
-            return root;
-
-        if(data < root.data)
-            return searchNode(root.left, data);
-
-        //else (data > root.data)
-        return searchNode(root.right, data);
     }
 
     /**

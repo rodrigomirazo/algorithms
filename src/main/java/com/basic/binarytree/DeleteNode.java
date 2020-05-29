@@ -3,26 +3,12 @@ package com.basic.binarytree;
 public class DeleteNode {
 
     public static void main(String[] args) {
-        Node root = new Node(50);
-        root.left = new Node(30);
-        root.left.left = new Node(20);
-        root.left.right = new Node(40);
-
-        root.right = new Node(70);
-        root.right.left = new Node(60);
-        root.right.left = new Node(80);
-        /**
-         *         50
-         *      /     \
-         *     30      70
-         *    /  \    /  \
-         *  20   40  60   80
-         */
+        Node root = InitializeTree.intilizeNode();
 
         print(root);
         System.out.println();
-        deleteRecursive(root, 50);
-        print(root);
+        Node node1 = deleteNode(root, 80);
+        print(node1);
     }
 
     static void print(Node root) {
@@ -30,50 +16,55 @@ public class DeleteNode {
         if(root == null)
             return;
 
+        System.out.print(root.value + "-");
         print(root.left);
-        System.out.print(root.value + " ");
         print(root.right);
     }
 
-    static private Node deleteRecursive(Node node, int value) {
+    private static Node deleteNode(Node node, Integer value) {
 
         if(node == null)
-            return node;
-        //Recur Next Values
-        else if( value < node.value )
-            node.left = deleteRecursive(node.left, value);
-        else if( value > node.value)
-            node.right = deleteRecursive(node.right, value);
-        //if(node.value == value)
-        else {
-
-            //Case 1: node with only one child or no child
-            if (node.left == null)
-                return node.right;
-
-            else if (node.right == null)
-                return node.left;
-
-            //Case 2: node with two children: Get the inorder successor
-            node.value = minValue(node.right);
-
-            // Delete the inorder successor
-            node.right = deleteRecursive(node.right, node.value);
+            return null;
+        if(value < node.value){
+            node.left = deleteNode(node.left, value);
+        }else if (value > node.value){
+            node.right = deleteNode(node.right, value);
+        }else{
+            // Leaf node deletion case
+            if(node.left == null && node.right == null){
+                System.out.println("Leaf node deletion case");
+                node = null;
+            }
+            // Node to be deleted has one child case
+            // Node to be deleted has right child
+            else if(node.left == null){
+                System.out.println("Having One right child deletion case");
+                node = node.right;
+            }
+            // Node to be deleted has left child
+            else if(node.right == null){
+                System.out.println("Having One left child deletion case");
+                node = node.left;
+            }
+            // Node to be deleted has two children case
+            else{
+                System.out.println("Two children deletion case");
+                Node successor = findSuccessor_recur(node.right);
+                // Copy the value
+                node.value = successor.value;
+                // delete successor node instead
+                node.right = deleteNode(node.right, successor.value);
+            }
         }
-
         return node;
     }
 
-    // smallest in the subtree
-    static int minValue(Node root) {
-        int minv = root.value;
-        //As is a binary tree, it should be the left leaf
-        while (root.left != null) {
+    private static Node findSuccessor_recur(Node node){
+        if(node.left == null)
+            return node;
+        else
+            return findSuccessor_recur(node.left);
 
-            minv = root.left.value;
-            root = root.left;
-        }
-        return minv;
     }
 
 }

@@ -37,7 +37,7 @@ public class QuickSortLastElement {
        of pivot */
     static int partition(int arr[], int low, int high) {
         int pivot = arr[high];
-        int lowestElement = (low-1); // index of smaller element
+        int lowestElement = low - 1; // index of smaller element
 
         for (int i = low; i < high; i++) {
             // If current element is smaller than or

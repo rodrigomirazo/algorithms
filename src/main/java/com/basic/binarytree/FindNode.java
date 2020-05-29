@@ -2,10 +2,11 @@ package com.basic.binarytree;
 
 public class FindNode {
 
-    private Node root;
+    private static Node root;
 
-    public FindNode(Node root) {
-        this.root = root;
+    public static void main(String[] args) {
+        root = InitializeTree.intilizeNode();
+
     }
 
     private boolean containsNodeRecursive(Node current, int value) {
