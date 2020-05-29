@@ -1,4 +1,4 @@
-package com.algorithms.binarytree;
+package com.algortithms.tree;
 
 import java.util.ArrayList;
 import java.util.List;

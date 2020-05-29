@@ -1,5 +1,5 @@
 
-package com.algorithms.binarytree;
+package com.algortithms.tree;
 
 public class TreeHeight {
 
