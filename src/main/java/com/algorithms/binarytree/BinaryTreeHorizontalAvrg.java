@@ -1,4 +1,4 @@
-package com.basic.binarytree;
+package com.algorithms.binarytree;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

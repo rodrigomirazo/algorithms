@@ -1,4 +1,4 @@
-package com.basic.binarytree;
+package com.algorithms.binarytree;
 
 // A Java program to introduce Binary Tree
 class BinaryTreeCRUD {

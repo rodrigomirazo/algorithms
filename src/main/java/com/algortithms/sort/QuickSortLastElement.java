@@ -10,7 +10,7 @@ public class QuickSortLastElement {
     // Driver program
     public static void main(String args[])
     {
-        int arr[] = {5, 8, 1, 3, 7, 9, 2};
+        int arr[] = {1, 5, 7, 1};
         sort(arr, 0, arr.length-1);
 
         System.out.println("sorted array");
