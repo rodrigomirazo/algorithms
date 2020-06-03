@@ -53,7 +53,7 @@ public class DeleteNode {
                 // Copy the value
                 node.value = successor.value;
                 // delete successor node instead
-                node.right = deleteNode(node.right, successor.value);
+                node.right = deleteNode(node.right, value);
             }
         }
         return node;
