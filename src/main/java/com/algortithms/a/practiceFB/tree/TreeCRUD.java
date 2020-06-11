@@ -34,47 +34,40 @@ public class TreeCRUD {
         if(root == null) {
             return new Node(data);
         }
-
-        //root.value = 1 ; inser 2
-        if(data < root.value )
+        if (data < root.value) {
             root.left = insert(root.left, data);
-
-        if(data > root.value)
+        }
+        if (data > root.value) {
             root.right = insert(root.right, data);
-
+        }
         return root;
     }
 
     Node delete(Node root, int delValue) {
-
-        if(root == null) {
+        if(root == null)
             return root;
-        }
-
-        else if(delValue < root.value) {
+        //root.value = 5; delVallue = 4
+        if(root.value > delValue)
             root.left = delete(root.left, delValue);
-        }
-
-        else if(root.value > delValue) {
+        else if(root.value < delValue)
             root.right = delete(root.right, delValue);
-        } else {
-            //node is a leaf
-            if(root.left != null && root.right == null) {
+
+        else {
+            if(root.left == null && root.right == null) {
                 root = null;
             }
-            //node has at least one children
-            else if(root.left == null)
-                root = root.left;
-
-            else if(root.right == null)
+            else if(root.left == null) {
                 root = root.right;
-
-            //node has 2 or more children
-            else {
-                Node successor = treeCrud.findNextestNode(root.right);
-                root.value = successor.value;
-                root.right = delete(root.right, successor.value);
             }
+            else if(root.right == null) {
+                root = root.left;
+            }
+            else {
+                Node nextest = findNextestNode(root.right);
+                root.value = nextest.value;
+                root.right = delete(root.right, nextest.value);
+            }
+
         }
 
         return root;
@@ -83,7 +76,8 @@ public class TreeCRUD {
     static Node findNextestNode(Node node) {
         if(node.left == null)
             return node;
-        else
-            return findNextestNode(node.left);
+
+        node.left = findNextestNode(node.left);
+        return node;
     }
 }

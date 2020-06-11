@@ -14,18 +14,28 @@ public class BreathFirstSearch {
 
         BFS.breadFirstSEarch(root, 3);
 
-        System.out.println("print min = " + BFS.minHeight(root));
+        //System.out.println("print min = " + BFS.minHeight(root));
     }
 
     void breadFirstSEarch(Node root, int level) {
         if(root == null)
-            return ;
+            return;
+
         if(level == 0)
-            System.out.print( root.value + " ");
-        else {
-            breadFirstSEarch(root.left, level - 1);
-            breadFirstSEarch(root.right, level - 1);
-        }
+            System.out.print(root.value + " ");
+
+        breadFirstSEarch(root.left, level - 1);
+        breadFirstSEarch(root.right, level - 1);
+    }
+
+    static void print(Node root) {
+
+        if(root == null)
+            return;
+
+        System.out.print(root.value + "-");
+        print(root.left);
+        print(root.right);
     }
 
     Node insert(Node root, int value) {
@@ -40,12 +50,4 @@ public class BreathFirstSearch {
         return root;
     }
 
-    int minHeight(Node root) {
-        if(root == null)
-            return 0;
-
-        return Math.max(
-                minHeight(root.left), minHeight(root.right)
-        ) + 1;
-    }
 }

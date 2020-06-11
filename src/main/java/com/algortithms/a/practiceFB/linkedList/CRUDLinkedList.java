@@ -20,7 +20,6 @@ public class CRUDLinkedList {
 
         //delete at the middle
         System.out.println("\nprint List");
-        //node = crud.delete(node, 2);
         node = crud.deleteNode(node, 2);
         crud.print(node);
     }
@@ -41,14 +40,11 @@ public class CRUDLinkedList {
     }
 
     Node deleteNode(Node node, int value) {
-        if(node == null) {
-            return null;
+        if(node.next == null) {
+            return node;
         }
 
-        if(node.data == value) {
-            Node temp = node.next;
-            node = new Node(temp.data);
-            node.next = temp;
+        if(node.next.data == value) {
             node.next = deleteNode(node.next.next, value);
         } else {
             node.next = deleteNode(node.next, value);

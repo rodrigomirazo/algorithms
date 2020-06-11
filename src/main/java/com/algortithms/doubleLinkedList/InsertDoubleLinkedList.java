@@ -7,7 +7,7 @@ public class InsertDoubleLinkedList {
         Node head = new Node(1);
         head = crud.insertAfter(head, 2);
         head = crud.insertAfter(head, 3);
-        head = crud.insertBefore(head, 0);
+        //head = crud.insertBefore(head, 0);
         head = crud.insertAfter(head, 5);
         head = crud.insertAfterNode(head, 3, 4);
 
@@ -21,17 +21,16 @@ public class InsertDoubleLinkedList {
     }
 
     Node insertAfterNode(Node head, int data, int newData) {
-        Node after = new Node(newData);
         if(head == null)
-            return after;
-
-        //while (head.previous != null) head = head.previous;
+            return head;
+        Node newNode = new Node(newData);
         while (head.next != null) {
             if(head.data == data) {
-                after.next = head.next;
-                after.previous = head;
-                head.next.previous = after;
-                head.next = after;
+                newNode.next = head.next;
+                newNode.previous = head;
+
+                head.next.previous = newNode;
+                head.next = newNode;
             }
             head = head.next;
         }
@@ -39,16 +38,16 @@ public class InsertDoubleLinkedList {
         return head;
     }
 
-    Node insertAfter(Node head, int data) {
-        Node afterNode = new Node(data);
-        if(head == null) {
-            return afterNode;
-        }
+    Node insertAfter(Node head, int newData) {
+        if(head == null)
+            return head;
+
         while (head.next != null) {
             head = head.next;
         }
-        head.next = afterNode;
-        afterNode.previous = head;
+        Node newnode = new Node(newData);
+        head.next = newnode;
+        newnode.previous = head;
 
         return head;
     }

@@ -1,88 +1,46 @@
 package com.algortithms.sort;
 
 public class MergeSort {
-    private int[] inputArray;
-    private int[] tempMergArr;
-    private int length;
+    public static void main(String[] args) {
+        int[] array = new int[]{5, 4, 6, 2, 10};
+        mergeSort(array, new int[array.length], 0, array.length-1);
 
-    public static void main(String a[]){
-
-        int[] inputArr = {5, 8, 1, 3, 7, 9, 2};
-        MergeSort mms = new MergeSort();
-        mms.sort(inputArr);
-        for(int i:inputArr){
-            System.out.print(i);
-            System.out.print(" ");
-        }
+        for (int i = 0; i < array.length; i++)
+            System.out.print(array[i] + " ");
     }
 
-    public void sort(int inputArr[]) {
-        this.inputArray = inputArr;
-        this.length = inputArr.length;
-        this.tempMergArr = new int[length];
-        doMergeSort(0, length - 1);
+    static void mergeSort(int array[], int temp[], int leftStart, int rightEnd) {
+        if(leftStart >= rightEnd)
+            return;
+
+        int middle = (leftStart + rightEnd)/2;
+        mergeSort(array, temp, leftStart, middle);
+        mergeSort(array, temp, middle+1, rightEnd);
+
+        merge(array, temp, leftStart, rightEnd);
     }
 
-    private void doMergeSort(int lowerIndex, int higherIndex) {
+    static void merge(int array[], int temp[], int leftStart, int rightEnd) {
+        int leftEnd = (rightEnd + leftStart) / 2;
+        int rightStart = leftEnd + 1;
+        int size = rightEnd - leftStart + 1;
 
-        if (lowerIndex < higherIndex) {
-            int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
-            // Below step sorts the left side of the inputArray
-            System.out.print("\nFirst Part: ");
-            doMergeSort(lowerIndex, middle);
+        int left = leftStart;
+        int right = rightStart;
+        int index = leftStart;
 
-            // Below step sorts the right side of the inputArray
-            System.out.print("\nSecond Part: ");
-            doMergeSort(middle + 1, higherIndex);
-
-            // Now merge both sides
-            mergeParts(lowerIndex, middle, higherIndex);
-        }
-    }
-
-    private void mergeParts(int lowerIndex, int middle, int higherIndex) {
-
-        int[] tempMergArr = inputArray.clone();
-
-        //From left to the middle
-        int leftToMiddle = lowerIndex;
-
-        //from the middle to the right index
-        int midToRight = middle + 1;
-
-        //From left to the end
-        int endToEnd = lowerIndex;
-
-        //              |-->--|-----|  &&  |-----|-->---|
-        while ( leftToMiddle <= middle && midToRight <= higherIndex) {
-
-            //         |>------|-------|  <= |------|>------|
-            if (tempMergArr[leftToMiddle] <= tempMergArr[midToRight]) {
-                inputArray[endToEnd] = tempMergArr[leftToMiddle];
-                leftToMiddle++;
+        while (left <= leftEnd && right <= rightEnd) {
+            if (array[left] <= array[right]) {
+                temp[index] = array[left];
+                left++;
             } else {
-                inputArray[endToEnd] = tempMergArr[midToRight];
-                midToRight++;
+                temp[index] = array[right];
+                right++;
             }
-            endToEnd++;
+            index++;
         }
-
-        //Copy remaining elements of tempArray
-        //           |>-----|-------|
-        while (leftToMiddle <= middle) {
-            inputArray[endToEnd] = tempMergArr[leftToMiddle];
-            endToEnd++;
-            leftToMiddle++;
-        }
-        printArr(tempMergArr);
-
-    }
-
-    void printArr(int[] arr) {
-        System.out.println("print Part: ");
-        for(int l:arr){
-            System.out.print(" " + l);
-        }
-        System.out.println("\n");
+        System.arraycopy(array, left, temp, index, leftEnd - left + 1);
+        System.arraycopy(array, right, temp, index, rightEnd - right + 1);
+        System.arraycopy(temp, leftStart, array, leftStart, size);
     }
 }

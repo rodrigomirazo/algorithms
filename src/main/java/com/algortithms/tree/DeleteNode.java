@@ -7,7 +7,7 @@ public class DeleteNode {
 
         print(root);
         System.out.println();
-        Node node1 = deleteNode(root, 80);
+        Node node1 = deleteNode(root, 8);
         print(node1);
     }
 
@@ -53,7 +53,7 @@ public class DeleteNode {
                 // Copy the value
                 node.value = successor.value;
                 // delete successor node instead
-                node.right = deleteNode(node.right, value);
+                node.right = deleteNode(node.right, successor.value);
             }
         }
         return node;
